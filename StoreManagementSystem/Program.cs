@@ -48,7 +48,7 @@ class Program
             };
 
             int transactionId = await unitOfWork.Sales.CreateTransactionAsync(newSale);
-            Console.WriteLine($"[1] Check No. {transactionId} created.");
+            Console.WriteLine($"Check No. {transactionId} created.");
             
             var saleItem = new SaleItem
             {
@@ -59,11 +59,11 @@ class Program
             };
             
             await unitOfWork.Sales.AddSaleItemAsync(saleItem);
-            Console.WriteLine($"[2] {saleItem.Quantity} pcs. added '{productToSell.ProductName}' into the check.");
+            Console.WriteLine($"{saleItem.Quantity} pcs. added '{productToSell.ProductName}' into the check.");
             
             decimal newPrice = productToSell.CurrentPrice + 500m;
             await unitOfWork.Products.UpdatePriceAsync(productToSell.ProductId, newPrice, 1);
-            Console.WriteLine($"[3] Price changed for the future");
+            Console.WriteLine($"Price changed for the future");
             
             await unitOfWork.CommitAsync();
             Console.WriteLine("\nTransaction successfully recorded!");
